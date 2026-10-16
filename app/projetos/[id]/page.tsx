@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const dadosProjetos: Record<string, any> = {
   "ecommerce-perfumes": {
@@ -18,6 +19,10 @@ const dadosProjetos: Record<string, any> = {
       "Interface 100% responsiva focada na navegação mobile",
     ],
     tecnologias: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js", "PostgreSQL"],
+    imagens: [
+      "/projetos/fragrance1.png",
+      "/projetos/fragrance2.png"
+    ],
   },
   "sistema-erp-gestao": {
     titulo: "Sistema ERP de Compras & Estoque",
@@ -33,6 +38,11 @@ const dadosProjetos: Record<string, any> = {
       "Controle de acesso por perfil de usuário",
     ],
     tecnologias: ["React", "Next.js", "Tailwind CSS", "TypeScript", "REST API"],
+    imagens: [
+      "/projetos/gestacom1.png",
+      "/projetos/gestacom2.png",
+      "/projetos/gestacom3.png"
+    ],
   },
   "transporte-escolar": {
     titulo: "Portal de Gestão de Transporte Escolar",
@@ -48,6 +58,11 @@ const dadosProjetos: Record<string, any> = {
       "Canal direto para comunicados e alertas",
     ],
     tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    imagens: [
+      "/projetos/transpescolar1.png",
+      "/projetos/transpescolar2.png",
+      "/projetos/transpescolar3.png"
+    ],
   },
   "cucas-artesanais": {
     titulo: "Cardápio Digital - Cucas Artesanais",
@@ -63,6 +78,10 @@ const dadosProjetos: Record<string, any> = {
       "Carregamento ultra-rápido focado em SEO e conversão",
     ],
     tecnologias: ["Next.js", "Tailwind CSS", "Framer Motion", "WhatsApp API"],
+    imagens: [
+      "/projetos/henkel1.png",
+      "/projetos/henkel2.png"
+    ],
   },
 };
 
@@ -110,15 +129,36 @@ export default function DetalhesProjeto({ params }: { params: Promise<{ id: stri
           </p>
         </header>
 
-        <div className="w-full h-64 sm:h-96 rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/60 to-slate-950 flex flex-col items-center justify-center p-8 text-center space-y-3 relative overflow-hidden group">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl font-bold">
-            💻
+        {/* 📸 SEÇÃO DE DEMONSTRAÇÃO VISUAL / GALERIA DE PRINTS */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold text-white border-b border-slate-800 pb-3">
+            Demonstração Visual do Sistema
+          </h2>
+          <div className="grid grid-cols-1 gap-8">
+            {projeto.imagens && projeto.imagens.length > 0 ? (
+              projeto.imagens.map((img: string, idx: number) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/50 shadow-2xl"
+                >
+                  <img 
+                    src={img} 
+                    alt={`${projeto.titulo} - Print ${idx + 1}`} 
+                    className="w-full h-auto object-cover" 
+                  />
+                </motion.div>
+              ))
+            ) : (
+              <div className="p-12 text-center text-slate-500 rounded-2xl border border-slate-800 bg-slate-900/30">
+                Nenhum print cadastrado para este projeto.
+              </div>
+            )}
           </div>
-          <p className="text-slate-400 font-medium text-sm">Demonstração Visual do Sistema</p>
-          <span className="text-xs text-slate-500 max-w-sm">
-            (Espaço reservado para mockups, capturas de tela ou gravação de demonstração da interface)
-          </span>
-        </div>
+        </section>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-8 rounded-3xl border border-slate-800/80 bg-slate-900/30 space-y-4">
