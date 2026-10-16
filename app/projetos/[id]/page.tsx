@@ -85,6 +85,13 @@ const dadosProjetos: Record<string, any> = {
   },
 };
 
+// Gera os parâmetros estáticos para que a Vercel compile todas as rotas dinâmicas com sucesso
+export async function generateStaticParams() {
+  return Object.keys(dadosProjetos).map((id) => ({
+    id,
+  }));
+}
+
 export default function DetalhesProjeto({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = resolvedParams.id;
@@ -147,7 +154,7 @@ export default function DetalhesProjeto({ params }: { params: Promise<{ id: stri
                 >
                   <img 
                     src={img} 
-                    alt={`${projeto.titulo} - Print ${idx + 1}`} 
+                    alt={`${projeto.titulo} Print ${idx + 1}`} 
                     className="w-full h-auto object-cover" 
                   />
                 </motion.div>
