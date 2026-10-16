@@ -13,14 +13,14 @@ export default function Home() {
     },
   };
 
- const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-} as const;
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  } as const;
 
   const projetos = [
     {
@@ -30,6 +30,10 @@ export default function Home() {
       descricao: "Plataforma de vendas online de alta conversão, com catálogo inteligente, cálculo de frete, checkout otimizado e banco de dados para alta escala.",
       tag: "Fullstack",
       cor: "from-emerald-500/20 to-teal-500/5",
+      imagens: [
+        "/projetos/fragrance1.png",
+        "/projetos/fragrance2.png"
+      ],
     },
     {
       id: "sistema-erp-gestao",
@@ -38,6 +42,11 @@ export default function Home() {
       descricao: "Sistema web focado em controle avançado de estoque, rastreabilidade de compras, gestão multi-moeda e relatórios financeiros em tempo real.",
       tag: "Sistema Web / ERP",
       cor: "from-cyan-500/20 to-blue-500/5",
+      imagens: [
+        "/projetos/gestacom1.png",
+        "/projetos/gestacom2.png",
+        "/projetos/gestacom3.png"
+      ],
     },
     {
       id: "transporte-escolar",
@@ -46,6 +55,11 @@ export default function Home() {
       descricao: "Plataforma web para otimização de rotas, gestão de passageiros/alunos, controle de mensalidades e canal direto de comunicação.",
       tag: "Plataforma SaaS",
       cor: "from-indigo-500/20 to-purple-500/5",
+      imagens: [
+        "/projetos/transpescolar1.png",
+        "/projetos/transpescolar2.png",
+        "/projetos/transpescolar3.png"
+      ],
     },
     {
       id: "cucas-artesanais",
@@ -54,6 +68,10 @@ export default function Home() {
       descricao: "Página de altíssima conversão focada em experiência mobile, apresentação de produtos artesanais e recepção direta de pedidos via WhatsApp.",
       tag: "MVP / High Conversion",
       cor: "from-amber-500/20 to-orange-500/5",
+      imagens: [
+        "/projetos/henkel1.png",
+        "/projetos/henkel2.png"
+      ],
     },
   ];
 
@@ -187,6 +205,17 @@ export default function Home() {
                     </span>
                     <span className="text-xs text-slate-500">{item.categoria}</span>
                   </div>
+
+                  {/* 📸 CAPA DO PROJETO */}
+                  {item.imagens && item.imagens.length > 0 && (
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden my-3 border border-slate-800">
+                      <img 
+                        src={item.imagens[0]} 
+                        alt={item.titulo} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                    </div>
+                  )}
 
                   <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                     {item.titulo}
